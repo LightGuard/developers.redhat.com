@@ -27,6 +27,7 @@ skips:
 #    # JDF-770
   - !ruby/regexp /^https:\/\/docs.jboss.org\/author\/display\/PLINK\/SAML\+Authenticators\+\%28Tomcat\%2CJBossAS\%29+/
 ignores:
+  - code: 6 # Try to ignore those ssl issues
   - snippet: !ruby/regexp /f\.vimeocdn\.com/ # I don't see this error in real browsers
   - url: git@github.com:nodyn/nodyn.git #Not an error.
   - url: http://in.relation.to/ #Not an error.
@@ -146,4 +147,5 @@ phantomjs_threads: 20
 pipeline: ../_ext/blinkr/blinkr.rb
 # The output file to write the report to
 report: _tmp/blinkr/report.html
+#sitemap: /home/jporter/projects/developers.redhat.com/_tmp/sitemap.xml
 
