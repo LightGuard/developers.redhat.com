@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/LightGuard/blinkr.git
-  revision: 90b0fad4b49ffc0d77fcb8cc9be644f22d0b78c5
+  revision: 3e5c394b3d159379e4f20f13ea1dda4f8a6e79cb
   specs:
     blinkr (0.3.8)
       nokogiri (~> 1.5)
