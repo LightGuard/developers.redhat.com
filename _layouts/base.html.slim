@@ -7,8 +7,9 @@ doctype html
 
 head
   - if site.metrics
-    / Adobe DTM staging
-    script src="#{site.adobe_metrics_url}"
+    - if site.dtm_code
+      / Adobe DTM staging
+      script src="#{site.dtm_code}"
   meta charset='utf-8'
   meta name='google-site-verification' content='bxtQxPXTaA2g5bXw_buofCT53_Uwp1fGAu9uHSA0UWc'
   meta name='viewport' content='width=device-width, initial-scale=1.0'
