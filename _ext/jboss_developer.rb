@@ -111,26 +111,51 @@ module JBoss
                 # If we haven't found the page, start trying to make substitions for the url
                 unless found_page
                   if (url.include?('.md') || url.include?('README'))
-                    if has_page_by_uri? site, page, url.gsub(/README\.(md|html)/, 'index.html')
-                      a['href'] = url.gsub(/README\.(md|html)/, 'index.html')
+                    parsed_uri = URI.parse(url)
+
+                    # Links to fragments on this page should stay here
+                    unless parsed_uri.fragment.nil?
+                      unless doc.css("a[id=#{parsed_uri.fragment}]").empty?
+                        a['href'] = site.base_url + page.output_path.gsub(/README\.(md|html)/, 'index.html') + "##{parsed_uri.fragment}"
+                        altered = true
+                        next
+                      end
+                    end
+
+                    # README pages need to be translated to index.hmtl pages
+                    if url =~ /README/
+                      if has_page_by_uri? site, page, url.gsub(/(\.\.\/)*README\.(md|html)/, 'index.html')
+                        a['href'] = site.base_url + page.output_path + "##{parsed_uri.fragment}"
+                        altered = true
+                        next
+                      end
+                    end
+
+                    # CONTRIBUTING pages need to go one level up then index.html
+                    if url =~ /CONTRIBUTING/
+                      if has_page_by_uri? site, page, url.gsub(/CONTRIBUTING\.(md|html)/, '../contributing/index.html')
+                        a['href'] = site.base_url + page.output_path + "../contributing/index.html##{parsed_uri.fragment}"
+                        altered = true
+                        next
+                      end
+                    end
+                    
+                    # this is a link that should go to github
+                    if (page.metadata[:browse].include?('blob') || page.metadata[:browse].include?('tree'))
+                      if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
+                        a['href'] = page.metadata[:browse] + '/' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
+                      else
+                        a['href'] = page.metadata[:browse] + '/' + page.output_path.split('/').last.gsub('index.html', '') + url
+                      end
                       altered = true
                     else
-                      if (page.metadata[:browse].include?('blob') || page.metadata[:browse].include?('tree'))
-                        if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
-                          a['href'] = page.metadata[:browse] + '/' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
-                        else
-                          a['href'] = page.metadata[:browse] + '/' + page.output_path.split('/').last.gsub('index.html', '') + url
-                        end
-                      altered = true
+                      if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
+                        a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
                       else
-                        if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
-                          a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
-                        else
-                          a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split('/').last.gsub('index.html', '') + url
-                        end
-                        a['href'] = page.metadata[:browse] + '/blob/master/' + page.output_path.split('/').last.gsub('index.html', '') + url
-                        altered = true
+                        a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split('/').last.gsub('index.html', '') + url
                       end
+                      a['href'] = page.metadata[:browse] + '/blob/master/' + page.output_path.split('/').last.gsub('index.html', '') + url
+                      altered = true
                     end
                   end
                 end
@@ -182,7 +207,7 @@ module JBoss
 
         site.pages.find do |p|
           begin
-            URI.join(site.base_url, p.output_path.gsub(/\s+/, '+')).path == URI.join(site.base_url, page.output_path.gsub(/\s+/, '+'), fixed_url).path
+            File.join(site.base_url, p.output_path.gsub(/\s+/, '+')).path == File.join(site.base_url, page.output_path.gsub(/\s+/, '+'), fixed_url).path
           rescue
             false
           end
