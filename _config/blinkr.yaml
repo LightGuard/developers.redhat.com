@@ -109,7 +109,12 @@ ignores:
   - url: https://community.jboss.org/emailPasswordToken%21input.jspa #Not an error
   - url: https://developer.jboss.org/people/nzhu #Not an error
   - url: https://developer.jboss.org/people/mmusgrov #Not an error
+  - url: http://devops.com/2015/06/03/redhat-culture-keeping-devops-faith/ #Not an error
 # ---------------BELOW ARE CURRENT OUTSTANDING ISSUES--------------------------
+  - url: http://www.redhat.com/rhecm/rest-rhecm/jcr/repository/collaboration/jcr:system/jcr:versionStorage/e9457db80a05260166324e2c81027566/1/jcr:frozenNode/rh:pdfFile.pdf #RHD-718
+  - url: http://fisheye.jboss.com/browse/JBossAS/projects/jboss-jca/trunk/ #JBJCA-1293
+  - url: https://infinispan.ci.cloudbees.com/ #ISPN-4600
+  - url: http://fisheye.jboss.org/browse/Guvnor #Guvnor-2113
   - url: https://devstudio.jboss.com/central/install?connectors=org.jboss.tools.aerogear.hybrid #JIRA Ticket Outstanding
   - url: https://github.com/jboss-developer/jboss-sandbox-quickstarts/fork_select #JIRA Ticket Outstanding
   - url: https://github.com/jboss-developer/jboss-eap-quickstarts/tree/master/numberguess #JIRA Ticket Outstanding
@@ -142,6 +147,13 @@ ignores:
   - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/chap-JSF_Portlet_Development_with_RichFaces.html #JDF-773.
   - url: https://access.redhat.com/site/documentation/en-US/JBoss_Portal_Platform/6.1/html/Development_Guide/Google.html #JDF-773.
   - url: https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_Fuse/6.1/html/Apache_Camel_Component_Reference/files/_IDU_HazelcastComponent.html #DEVELOPER-1148
+  - url: https://github.com/jboss-developer/jboss-unifiedpush-quickstarts/tree/40324d4/push-contacts-mobile/push-contacts-mobile/server/push-contacts-mobile-picketlink-secured/README.md #RHD-721
+  - url: https://github.com/jboss-developer/jboss-unifiedpush-quickstarts/tree/40324d4/push-contacts-mobile/push-contacts-mobile/server/contacts-mobile-proxy/README.md #RHD-721
+  - url: https://github.com/jboss-developer/jboss-unifiedpush-quickstarts/tree/40324d4/push-contacts-mobile/push-contacts-mobile/client/push-contacts-mobile-android/README.md #RHD-721
+  - url: https://github.com/jboss-developer/jboss-unifiedpush-quickstarts/tree/40324d4/push-contacts-mobile/push-contacts-mobile/client/push-contacts-mobile-ios/README.md #RHD-721
+  - url: https://github.com/jboss-developer/jboss-unifiedpush-quickstarts/tree/40324d4/push-contacts-mobile/push-contacts-mobile/client/push-contacts-mobile-cordova/README.md #RHD-721 
+  - url: https://github.com/jboss-developer/jboss-unifiedpush-quickstarts/tree/40324d4/push-contacts-mobile/push-contacts-mobile/client/push-contacts-mobile-cordova/README.md #RHD-721 
+  - url: https://github.com/jboss-developer/jboss-unifiedpush-quickstarts/tree/40324d4/push-contacts-mobile/push-contacts-mobile/client/contacts-mobile-webapp/README.md #RHD-721
 max_page_retys: 5
 max_retrys: 5
 browser: phantomjs
