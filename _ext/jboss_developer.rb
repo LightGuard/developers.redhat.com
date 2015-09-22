@@ -124,7 +124,7 @@ module JBoss
 
                         # One off for petclinic
                         if url == 'CHANGES.md' && page.output_path.include?('spring-petclinic')
-                          a[href] = File.join page.metadata[:browse], url
+                          a['href'] = File.join page.metadata[:browse], url
                         end
                       else
                         if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
