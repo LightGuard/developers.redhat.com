@@ -111,21 +111,29 @@ module JBoss
                 # If we haven't found the page, start trying to make substitions for the url
                 unless found_page
                   if (url.include?('.md') || url.include?('README'))
-                    if has_page_by_uri? site, page, url.gsub(/README\.(md|html)/, 'index.html')
+                    if has_page_by_uri? site, page, url.gsub(/README\.(md|html)/, 'index.html') # We have a page this should link to
                       a['href'] = url.gsub(/README\.(md|html)/, 'index.html')
                       altered = true
-                    else
+                    else # we don't have a page for this, go to the corresponding github location
+                      # We're linking to a branch
                       if (page.metadata[:browse].include?('blob') || page.metadata[:browse].include?('tree'))
+                        # If this is a project link, be sure to include the project part
                         if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
-                          a['href'] = page.metadata[:browse] + '/' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
-                        else # There is no product
-                          a['href'] = page.metadata[:browse] + '/' + page.output_path.split('/').last.gsub('index.html', '') + url
+                          a['href'] = File.join page.metadata[:browse], page.output_path.split(page.metadata[:product]).last.gsub('index.html', ''), url
+                        else # There is no product, just link to github
+                          a['href'] = File.join page.metadata[:browse],  url
                         end
 
-                        # One off for petclinic
-                        if url == 'CHANGES.md' && page.output_path.include?('spring-petclinic')
-                          a['href'] = File.join page.metadata[:browse], url
-                        end
+                        ## One off for petclinic
+                        #if url == 'CHANGES.md' && page.output_path.include?('spring-petclinic')
+                        #  a['href'] = File.join page.metadata[:browse], url
+                        #end
+
+                        ## One off for unified push issues
+                        #if url == 'CHANGES.md' && page.output_path.include?('spring-petclinic')
+                        #  a['href'] = File.join page.metadata[:browse], url
+                        #end
+                      # We want to link to the master branch
                       else
                         if (page.metadata[:product] && page.output_path.include?(page.metadata[:product]))
                           a['href'] = page.metadata[:browse] + '/blob/master' + page.output_path.split(page.metadata[:product]).last.gsub('index.html', '') + url
