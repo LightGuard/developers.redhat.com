@@ -1,6 +1,7 @@
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
+  akamai: 0
   alter_entity_autocomplete: 0
   article: 0
   asciidoc: 0
@@ -100,6 +101,11 @@ module:
   product: 0
   promotion_card: 0
   promotion_page: 0
+  purge: 0
+  purge_drush: 0
+  purge_processor_cron: 0
+  purge_queuer_coretags: 0
+  purge_ui: 0
   quickedit: 0
   rdf: 0
   redhat_developers: 0
