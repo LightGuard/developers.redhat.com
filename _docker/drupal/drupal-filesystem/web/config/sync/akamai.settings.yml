@@ -1,0 +1,27 @@
+version: v2
+disabled: false
+storage_method: database
+rest_api_url: 'https://xxxx-xxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx.luna.akamaiapis.net/'
+client_token: xxxx-xxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx
+client_secret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+access_token: xxxx-xxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx
+edgerc_path: ''
+edgerc_section: default
+basepath: null
+timeout: 5
+domain:
+  production: true
+  staging: false
+action_v2:
+  remove: true
+  invalidate: false
+action_v3:
+  delete: true
+  invalidate: false
+devel_mode: true
+mock_endpoint: 'https://akamaiopen2purgeccuproduction.docs.apiary.io'
+log_requests: false
+status_expire: 1209600
+edge_cache_tag_header: false
+_core:
+  default_config_hash: g0-EmRcBVqvgWxy0JdyJZYi054tyG5Zvp9ICP5wpYgs
